@@ -1,1 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blueprint Tech Collective</title>
+<meta name="description" content="Getting Sciences Po Reims students inside the companies and engineering work happening around the city.">
+<style>
+  :root{
+    --bg:#0c0e12;
+    --surface:#14171d;
+    --line:#252a33;
+    --ink:#e8eaee;
+    --muted:#9aa2b1;
+    --accent:#4da3ff;
+    --accent-dim:#1d3a57;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:0 24px}
 
+  /* grid backdrop */
+  .hero{
+    position:relative;padding:96px 0 72px;overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),
+                     linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:44px 44px;
+    mask-image:radial-gradient(ellipse 70% 60% at 50% 0%,#000 30%,transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 0%,#000 30%,transparent 75%);
+    opacity:.5;
+  }
+  .hero .wrap{position:relative}
+  .tag{
+    font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 20px;
+  }
+  h1{
+    font-size:clamp(38px,7vw,64px);line-height:1.04;margin:0 0 22px;
+    letter-spacing:-.025em;font-weight:650;
+  }
+  .sub{font-family:var(--mono);font-size:14px;color:var(--muted);margin:-8px 0 22px;letter-spacing:.02em}
+  .lede{font-size:clamp(17px,2.4vw,20px);color:var(--muted);max-width:56ch;margin:0 0 34px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;padding:12px 22px;border-radius:7px;
+    text-decoration:none;font-size:15px;font-weight:550;
+    border:1px solid transparent;transition:.15s ease;
+  }
+  .btn-primary{background:var(--accent);color:#06121f}
+  .btn-primary:hover{background:#6fb6ff}
+  .btn-ghost{border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  h2{
+    font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);
+    margin:0 0 28px;font-weight:500;
+  }
+  .big{font-size:clamp(20px,3vw,26px);line-height:1.45;margin:0 0 20px;letter-spacing:-.01em}
+  p{margin:0 0 18px;color:var(--muted)}
+  p.ink{color:var(--ink)}
+
+  .cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .card{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:10px;padding:24px;
+  }
+  .card .n{font-family:var(--mono);font-size:12px;color:var(--accent);margin:0 0 12px}
+  .card h3{margin:0 0 10px;font-size:18px;letter-spacing:-.01em}
+  .card p{margin:0;font-size:15px}
+
+  .stats{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:8px}
+  .stat{border-left:2px solid var(--accent-dim);padding:4px 0 4px 16px}
+  .stat b{display:block;font-family:var(--mono);font-size:26px;color:var(--ink);font-weight:600;letter-spacing:-.02em}
+  .stat span{font-size:14px;color:var(--muted)}
+
+  .timeline{list-style:none;margin:0;padding:0}
+  .timeline li{
+    display:flex;gap:20px;padding:14px 0;border-bottom:1px solid var(--line);
+    font-size:15px;
+  }
+  .timeline li:last-child{border-bottom:0}
+  .timeline .when{
+    font-family:var(--mono);font-size:13px;color:var(--accent);
+    min-width:112px;flex-shrink:0;padding-top:2px;
+  }
+  .timeline .what{color:var(--ink)}
+
+  .vote{background:var(--surface);border:1px solid var(--accent-dim);border-radius:12px;padding:30px}
+  .vote p:last-child{margin-bottom:0}
+
+  footer{padding:44px 0 60px;font-size:14px;color:var(--muted)}
+  footer a{color:var(--accent);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  .disclaimer{margin-top:14px;font-size:12.5px;color:#6c7483;max-width:60ch}
+
+  @media (max-width:560px){
+    .hero{padding:68px 0 54px}
+    section{padding:48px 0}
+    .timeline li{flex-direction:column;gap:4px}
+    .timeline .when{min-width:0}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="tag">Student initiative &middot; Reims campus</p>
+    <h1>Blueprint</h1>
+    <p class="sub">Tech Collective</p>
+    <p class="lede">
+      Get technical and work alongside engineers here in Reims. Company visits,
+      talks from the people who build the systems, and a weekend spent on a real
+      engineering project.
+    </p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#vote">Vote 30 Sept &ndash; 2 Oct</a>
+      <a class="btn btn-ghost" href="#join">Join the team</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>The gap</h2>
+    <p class="big ink">
+      We spend two years studying how technology is governed, funded and
+      regulated, without ever seeing it built.
+    </p>
+    <p>
+      There is a 7,000&nbsp;m&sup2; innovation hub twenty minutes from campus in
+      Bezannes, backed by Cr&eacute;dit Agricole Nord Est and sixteen local companies
+      and institutions. The firms around Reims work on remote sensing, supply-chain
+      traceability, anti-counterfeiting and climate modelling. No association on
+      this campus has ever organised anything with any of them.
+    </p>
+    <div class="stats">
+      <div class="stat"><b>20 min</b><span>from campus to the Bezannes hub</span></div>
+      <div class="stat"><b>7,000 m&sup2;</b><span>of open-innovation space</span></div>
+      <div class="stat"><b>0</b><span>tech associations on campus</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What we do</h2>
+    <div class="cards">
+      <div class="card">
+        <p class="n">01</p>
+        <h3>Site visits</h3>
+        <p>
+          Inside the technical operations of companies around Reims. Working
+          sites, not corporate showrooms.
+        </p>
+      </div>
+      <div class="card">
+        <p class="n">02</p>
+        <h3>Engineer talks</h3>
+        <p>
+          The people who actually build and maintain these systems, on campus,
+          explaining how they work.
+        </p>
+      </div>
+      <div class="card">
+        <p class="n">03</p>
+        <h3>Build weekend</h3>
+        <p>
+          A partner company sets a real engineering problem. Mixed teams work on
+          it across two days and present the results.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>This year</h2>
+    <ul class="timeline">
+      <li><span class="when">Oct &ndash; Nov</span><span class="what">Team forms, partner outreach begins with Le Village by CA</span></li>
+      <li><span class="when">December</span><span class="what">First site visit</span></li>
+      <li><span class="when">Jan &ndash; Mar</span><span class="what">Speaker series, two to three sessions</span></li>
+      <li><span class="when">April</span><span class="what">Build challenge weekend</span></li>
+      <li><span class="when">May</span><span class="what">Closing showcase and handover</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="join">
+  <div class="wrap">
+    <h2>Who it's for</h2>
+    <p class="big ink">Anyone, whatever you study.</p>
+    <p>
+      No technical background is required and nothing here assumes you can code.
+      If you can already solder, write firmware or handle GIS, there is plenty to
+      do &mdash; but the point of this is that most of us can't yet.
+    </p>
+    <p>
+      Students from EiSINe and URCA are welcome on the team. The project is led
+      from Sciences Po Reims but the work is better with engineers in the room.
+    </p>
+  </div>
+</section>
+
+<section id="vote">
+  <div class="wrap">
+    <h2>Support the project</h2>
+    <div class="vote">
+      <p class="ink" style="font-size:18px">
+        Student voting runs from <strong>Wednesday 30 September, 10:00</strong>
+        to <strong>Friday 2 October, 12:00</strong>.
+      </p>
+      <p>
+        Student initiatives are selected by the student body. If this gets your
+        vote, it runs for the 2026&ndash;27 academic year with campus resources
+        behind it.
+      </p>
+      <p>
+        Questions, or want to be on the team?
+        <a href="mailto:aanchal.batwara@sciencespo.fr" style="color:var(--accent)">aanchal.batwara@sciencespo.fr</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p style="margin:0">
+      Blueprint Tech Collective &middot;
+      <a href="mailto:aanchal.batwara@sciencespo.fr">aanchal.batwara@sciencespo.fr</a>
+    </p>
+    <p class="disclaimer">
+      A student initiative proposed for the 2026&ndash;27 academic year. This is an
+      independent student project and is not an official publication of, nor
+      affiliated with, any institution.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
