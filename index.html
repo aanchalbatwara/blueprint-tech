@@ -4,247 +4,379 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Blueprint Tech Collective</title>
-<meta name="description" content="Getting Sciences Po Reims students inside the companies and engineering work happening around the city.">
+<meta name="description" content="A student initiative in Reims for anyone curious about how technology gets built. Company visits, hands-on engineering projects, and no experience needed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0c0e12;
-    --surface:#14171d;
-    --line:#252a33;
-    --ink:#e8eaee;
-    --muted:#9aa2b1;
-    --accent:#4da3ff;
-    --accent-dim:#1d3a57;
-    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+    --paper:#fbf8f3;
+    --card:#ffffff;
+    --ink:#1c2233;
+    --soft:#5b6275;
+    --line:#e9e3d8;
+    --blue:#2f5bea;
+    --blue-soft:#e8eeff;
+    --sun:#f5b84a;
+    --sun-soft:#fdf1da;
+    --mint:#dff3ea;
+    --mint-ink:#1d7a55;
+    --rose:#fde6e1;
+    --rose-ink:#b8483a;
+    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+    --sans:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --r:18px;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    margin:0;background:var(--bg);color:var(--ink);
-    font-family:var(--sans);line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:860px;margin:0 auto;padding:0 24px}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
 
-  /* grid backdrop */
-  .hero{
-    position:relative;padding:96px 0 72px;overflow:hidden;
-    border-bottom:1px solid var(--line);
-  }
-  .hero::before{
-    content:"";position:absolute;inset:0;
-    background-image:linear-gradient(var(--line) 1px,transparent 1px),
-                     linear-gradient(90deg,var(--line) 1px,transparent 1px);
-    background-size:44px 44px;
-    mask-image:radial-gradient(ellipse 70% 60% at 50% 0%,#000 30%,transparent 75%);
-    -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 0%,#000 30%,transparent 75%);
-    opacity:.5;
-  }
-  .hero .wrap{position:relative}
-  .tag{
-    font-family:var(--mono);font-size:12px;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--accent);margin:0 0 20px;
-  }
-  h1{
-    font-size:clamp(38px,7vw,64px);line-height:1.04;margin:0 0 22px;
-    letter-spacing:-.025em;font-weight:650;
-  }
-  .sub{font-family:var(--mono);font-size:14px;color:var(--muted);margin:-8px 0 22px;letter-spacing:.02em}
-  .lede{font-size:clamp(17px,2.4vw,20px);color:var(--muted);max-width:56ch;margin:0 0 34px}
-  .cta{display:flex;gap:12px;flex-wrap:wrap}
-  .btn{
-    display:inline-block;padding:12px 22px;border-radius:7px;
-    text-decoration:none;font-size:15px;font-weight:550;
-    border:1px solid transparent;transition:.15s ease;
-  }
-  .btn-primary{background:var(--accent);color:#06121f}
-  .btn-primary:hover{background:#6fb6ff}
-  .btn-ghost{border-color:var(--line);color:var(--ink)}
-  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  /* nav */
+  nav{position:sticky;top:0;z-index:10;background:rgba(251,248,243,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:-.01em}
+  .logo svg{flex-shrink:0}
+  .navlinks{display:flex;align-items:center;gap:24px;font-size:15px}
+  .navlinks a{text-decoration:none;color:var(--soft)}
+  .navlinks a:hover{color:var(--ink)}
+  .navlinks .pill{background:var(--ink);color:#fff;padding:8px 16px;border-radius:999px}
+  .navlinks .pill:hover{color:#fff;background:var(--blue)}
+  @media (max-width:720px){.navlinks a:not(.pill){display:none}}
 
-  section{padding:64px 0;border-bottom:1px solid var(--line)}
-  h2{
-    font-family:var(--mono);font-size:12px;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--muted);
-    margin:0 0 28px;font-weight:500;
-  }
-  .big{font-size:clamp(20px,3vw,26px);line-height:1.45;margin:0 0 20px;letter-spacing:-.01em}
-  p{margin:0 0 18px;color:var(--muted)}
-  p.ink{color:var(--ink)}
+  /* hero */
+  .hero{padding:72px 0 56px}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  @media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero-art{max-width:420px}}
+  .kicker{display:inline-flex;align-items:center;gap:8px;background:var(--sun-soft);color:#8a5a0b;font-size:14px;font-weight:500;padding:6px 14px;border-radius:999px;margin-bottom:22px}
+  .kicker .dot{width:8px;height:8px;border-radius:50%;background:var(--sun)}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,5.6vw,60px);line-height:1.06;letter-spacing:-.02em;margin:0 0 22px}
+  h1 em{font-style:italic;color:var(--blue)}
+  .lede{font-size:clamp(17px,2vw,19px);color:var(--soft);max-width:34em;margin:0 0 30px}
+  .btns{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:500;font-size:16px;padding:14px 22px;border-radius:999px;transition:transform .15s ease,background .15s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-main{background:var(--blue);color:#fff}
+  .btn-main:hover{background:#2149cf}
+  .btn-alt{background:var(--card);border:1px solid var(--line);color:var(--ink)}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+  .tag{font-size:14px;padding:6px 12px;border-radius:999px;font-weight:500}
+  .t1{background:var(--mint);color:var(--mint-ink)}
+  .t2{background:var(--blue-soft);color:var(--blue)}
+  .t3{background:var(--rose);color:var(--rose-ink)}
 
-  .cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
-  .card{
-    background:var(--surface);border:1px solid var(--line);
-    border-radius:10px;padding:24px;
-  }
-  .card .n{font-family:var(--mono);font-size:12px;color:var(--accent);margin:0 0 12px}
-  .card h3{margin:0 0 10px;font-size:18px;letter-spacing:-.01em}
-  .card p{margin:0;font-size:15px}
+  .hero-art{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:18px;box-shadow:0 18px 40px -24px rgba(28,34,51,.35);transform:rotate(1.5deg)}
+  .hero-art svg{display:block;width:100%;height:auto;border-radius:16px}
 
-  .stats{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:8px}
-  .stat{border-left:2px solid var(--accent-dim);padding:4px 0 4px 16px}
-  .stat b{display:block;font-family:var(--mono);font-size:26px;color:var(--ink);font-weight:600;letter-spacing:-.02em}
-  .stat span{font-size:14px;color:var(--muted)}
+  /* sections */
+  section{padding:72px 0}
+  .eyebrow{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin:0 0 12px}
+  h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4vw,42px);line-height:1.12;letter-spacing:-.015em;margin:0 0 16px}
+  .intro{color:var(--soft);max-width:38em;margin:0 0 40px}
 
-  .timeline{list-style:none;margin:0;padding:0}
-  .timeline li{
-    display:flex;gap:20px;padding:14px 0;border-bottom:1px solid var(--line);
-    font-size:15px;
-  }
-  .timeline li:last-child{border-bottom:0}
-  .timeline .when{
-    font-family:var(--mono);font-size:13px;color:var(--accent);
-    min-width:112px;flex-shrink:0;padding-top:2px;
-  }
-  .timeline .what{color:var(--ink)}
+  .grid3{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+  .card h3{font-size:20px;margin:16px 0 8px;letter-spacing:-.01em}
+  .card p{margin:0;color:var(--soft);font-size:16px}
+  .icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center}
+  .i-blue{background:var(--blue-soft);color:var(--blue)}
+  .i-sun{background:var(--sun-soft);color:#b57607}
+  .i-mint{background:var(--mint);color:var(--mint-ink)}
+  .i-rose{background:var(--rose);color:var(--rose-ink)}
 
-  .vote{background:var(--surface);border:1px solid var(--accent-dim);border-radius:12px;padding:30px}
-  .vote p:last-child{margin-bottom:0}
+  .band{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 
-  footer{padding:44px 0 60px;font-size:14px;color:var(--muted)}
-  footer a{color:var(--accent);text-decoration:none}
+  .welcome{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  @media (max-width:820px){.welcome{grid-template-columns:1fr}}
+  .checks{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+  .checks li{display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .checks svg{flex-shrink:0;margin-top:2px}
+  .checks b{display:block;margin-bottom:2px}
+  .checks span{color:var(--soft);font-size:15.5px}
+
+  .reims{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  @media (max-width:820px){.reims{grid-template-columns:1fr}}
+  .facts{display:grid;gap:14px}
+  .fact{display:flex;align-items:baseline;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .fact b{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--blue);min-width:4.2em;line-height:1}
+  .fact span{color:var(--soft);font-size:15.5px}
+
+  .year{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .step{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+  .step .when{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--blue);background:var(--blue-soft);padding:4px 10px;border-radius:999px;margin-bottom:12px}
+  .step p{margin:0;font-size:15.5px}
+
+  .faq{max-width:760px}
+  details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+  summary{cursor:pointer;list-style:none;padding:18px 22px;font-weight:500;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary .plus{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:18px;line-height:1;transition:transform .2s ease}
+  details[open] summary .plus{transform:rotate(45deg)}
+  details p{margin:0;padding:0 22px 20px;color:var(--soft)}
+
+  .cta{background:var(--ink);color:#fff;border-radius:28px;padding:56px 40px;text-align:center;position:relative;overflow:hidden}
+  .cta::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:32px 32px}
+  .cta>*{position:relative}
+  .cta h2{color:#fff;margin-bottom:12px}
+  .cta p{color:#c7cbd6;max-width:34em;margin:0 auto 28px}
+  .cta .date{display:inline-block;background:var(--sun);color:var(--ink);font-weight:700;padding:8px 16px;border-radius:999px;margin-bottom:22px;font-size:15px}
+  .cta .btns{justify-content:center}
+  .cta .btn-alt{background:transparent;border-color:rgba(255,255,255,.3);color:#fff}
+  @media (max-width:560px){.cta{padding:44px 22px}}
+
+  footer{padding:40px 0 56px;color:var(--soft);font-size:14.5px}
+  footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+  footer a{color:var(--blue);text-decoration:none}
   footer a:hover{text-decoration:underline}
-  .disclaimer{margin-top:14px;font-size:12.5px;color:#6c7483;max-width:60ch}
-
-  @media (max-width:560px){
-    .hero{padding:68px 0 54px}
-    section{padding:48px 0}
-    .timeline li{flex-direction:column;gap:4px}
-    .timeline .when{min-width:0}
-  }
+  .fine{margin-top:16px;font-size:13px;color:#8a8f9c;max-width:60ch}
 </style>
 </head>
 <body>
 
-<header class="hero">
+<nav>
   <div class="wrap">
-    <p class="tag">Student initiative &middot; Reims campus</p>
-    <h1>Blueprint</h1>
-    <p class="sub">Tech Collective</p>
-    <p class="lede">
-      Get technical and work alongside engineers here in Reims. Company visits,
-      talks from the people who build the systems, and a weekend spent on a real
-      engineering project.
-    </p>
-    <div class="cta">
-      <a class="btn btn-primary" href="#vote">Vote 30 Sept &ndash; 2 Oct</a>
-      <a class="btn btn-ghost" href="#join">Join the team</a>
+    <a class="logo" href="#top" aria-label="Blueprint Tech Collective home">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+        <rect width="30" height="30" rx="8" fill="#2f5bea"/>
+        <path d="M8 8h14M8 15h14M8 22h14M8 8v14M15 8v14M22 8v14" stroke="#fff" stroke-opacity=".35" stroke-width="1"/>
+        <path d="M9 21 L15 10 L21 21 Z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      Blueprint
+    </a>
+    <div class="navlinks">
+      <a href="#welcome">Who it's for</a>
+      <a href="#do">What we do</a>
+      <a href="#faq">FAQ</a>
+      <a class="pill" href="#join">Get involved</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="kicker"><span class="dot"></span>Student vote · 30 Sept – 2 Oct</span>
+      <h1>Who said your interests couldn't be <em>interdisciplinary?</em></h1>
+      <p class="lede">
+        Blueprint is for anyone in Reims who's curious about how technology actually
+        gets built. Over the year we'll visit companies around the city, work on
+        hands-on engineering projects together, and learn to think like engineers,
+        starting from zero.
+      </p>
+      <div class="btns">
+        <a class="btn btn-main" href="#join">Count me in →</a>
+        <a class="btn btn-alt" href="#do">See what we'll do</a>
+      </div>
+      <div class="tags">
+        <span class="tag t1">No experience needed</span>
+        <span class="tag t2">All majors welcome</span>
+        <span class="tag t3">Free to join</span>
+      </div>
+    </div>
+
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M20 0H0V20" fill="none" stroke="#c9d6ff" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="400" height="320" fill="#eef2ff"/>
+        <rect width="400" height="320" fill="url(#g)"/>
+        <!-- building -->
+        <g fill="none" stroke="#2f5bea" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M60 250 V140 L120 100 L180 140 V250"/>
+          <path d="M60 250 H340"/>
+          <rect x="80" y="160" width="24" height="28" rx="3"/>
+          <rect x="136" y="160" width="24" height="28" rx="3"/>
+          <rect x="104" y="208" width="32" height="42" rx="3"/>
+          <!-- gear -->
+          <circle cx="270" cy="150" r="34"/>
+          <circle cx="270" cy="150" r="12"/>
+          <path d="M270 108v-10M270 202v-10M228 150h-10M322 150h-10M240 120l-7-7M307 187l-7-7M300 120l7-7M233 187l7-7"/>
+          <!-- circuit line -->
+          <path d="M200 250 V214 H236 V192" stroke-dasharray="5 6"/>
+          <circle cx="200" cy="250" r="4" fill="#2f5bea"/>
+          <circle cx="236" cy="192" r="4" fill="#2f5bea"/>
+        </g>
+        <!-- dimension line -->
+        <g stroke="#f5b84a" stroke-width="2" fill="none" stroke-linecap="round">
+          <path d="M60 272 H180"/><path d="M60 266 v12"/><path d="M180 266 v12"/>
+        </g>
+        <text x="120" y="296" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#8a5a0b" font-weight="700">you are here</text>
+        <!-- sticky note -->
+        <g transform="rotate(-6 320 60)">
+          <rect x="262" y="30" width="112" height="62" rx="6" fill="#fdf1da" stroke="#f5b84a" stroke-width="1.5"/>
+          <text x="318" y="57" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="#1c2233">curious?</text>
+          <text x="318" y="77" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#5b6275">that's enough</text>
+        </g>
+      </svg>
     </div>
   </div>
 </header>
 
-<section>
-  <div class="wrap">
-    <h2>The gap</h2>
-    <p class="big ink">
-      We spend two years studying how technology is governed, funded and
-      regulated, without ever seeing it built.
-    </p>
-    <p>
-      There is a 7,000&nbsp;m&sup2; innovation hub twenty minutes from campus in
-      Bezannes, backed by Cr&eacute;dit Agricole Nord Est and sixteen local companies
-      and institutions. The firms around Reims work on remote sensing, supply-chain
-      traceability, anti-counterfeiting and climate modelling. No association on
-      this campus has ever organised anything with any of them.
-    </p>
-    <div class="stats">
-      <div class="stat"><b>20 min</b><span>from campus to the Bezannes hub</span></div>
-      <div class="stat"><b>7,000 m&sup2;</b><span>of open-innovation space</span></div>
-      <div class="stat"><b>0</b><span>tech associations on campus</span></div>
+<section class="band" id="welcome">
+  <div class="wrap welcome">
+    <div>
+      <p class="eyebrow">You belong here</p>
+      <h2>Built for people who've never been in the room.</h2>
+      <p class="intro" style="margin-bottom:0">
+        Most of us study how technology is governed, funded and argued about without
+        ever seeing it made. Blueprint is where that changes. You don't need a
+        technical background, a laptop full of code, or any idea what an API is.
+        You just need to be curious.
+      </p>
     </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>What we do</h2>
-    <div class="cards">
-      <div class="card">
-        <p class="n">01</p>
-        <h3>Site visits</h3>
-        <p>
-          Inside the technical operations of companies around Reims. Working
-          sites, not corporate showrooms.
-        </p>
-      </div>
-      <div class="card">
-        <p class="n">02</p>
-        <h3>Engineer talks</h3>
-        <p>
-          The people who actually build and maintain these systems, on campus,
-          explaining how they work.
-        </p>
-      </div>
-      <div class="card">
-        <p class="n">03</p>
-        <h3>Build weekend</h3>
-        <p>
-          A partner company sets a real engineering problem. Mixed teams work on
-          it across two days and present the results.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>This year</h2>
-    <ul class="timeline">
-      <li><span class="when">Oct &ndash; Nov</span><span class="what">Team forms, partner outreach begins with Le Village by CA</span></li>
-      <li><span class="when">December</span><span class="what">First site visit</span></li>
-      <li><span class="when">Jan &ndash; Mar</span><span class="what">Speaker series, two to three sessions</span></li>
-      <li><span class="when">April</span><span class="what">Build challenge weekend</span></li>
-      <li><span class="when">May</span><span class="what">Closing showcase and handover</span></li>
+    <ul class="checks">
+      <li>
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#dff3ea"/><path d="M7 12.5l3.2 3L17 9" fill="none" stroke="#1d7a55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><b>Never coded? Perfect.</b><span>Everything starts from the basics, explained by people who do this for a living.</span></div>
+      </li>
+      <li>
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#dff3ea"/><path d="M7 12.5l3.2 3L17 9" fill="none" stroke="#1d7a55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><b>Politics, econ, law, history: all in.</b><span>The best questions about technology come from people outside it.</span></div>
+      </li>
+      <li>
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#dff3ea"/><path d="M7 12.5l3.2 3L17 9" fill="none" stroke="#1d7a55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><b>Already technical? Come teach us.</b><span>If you can solder, write code or handle GIS, there's a lot you can help build.</span></div>
+      </li>
+      <li>
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#dff3ea"/><path d="M7 12.5l3.2 3L17 9" fill="none" stroke="#1d7a55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><b>English, français, or both.</b><span>Come as you are, in whichever language you're comfortable in.</span></div>
+      </li>
     </ul>
+  </div>
+</section>
+
+<section id="do">
+  <div class="wrap">
+    <p class="eyebrow">What we'll do together</p>
+    <h2>A year of getting your hands on real tech.</h2>
+    <p class="intro">Three things, all year long. Come to whatever fits your schedule.</p>
+    <div class="grid3">
+      <div class="card">
+        <div class="icon i-blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/></svg>
+        </div>
+        <h3>Company visits</h3>
+        <p>Go inside the companies around Reims and see how their systems actually run, from vineyards using remote sensing to startups at the Bezannes hub.</p>
+      </div>
+      <div class="card">
+        <div class="icon i-sun">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg>
+        </div>
+        <h3>Hands-on projects</h3>
+        <p>Work in mixed teams on real engineering problems from local companies, then present what you built. No prior skills required, just willingness to try.</p>
+      </div>
+      <div class="card">
+        <div class="icon i-mint">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Engineer conversations</h3>
+        <p>Informal talks with the people who design and build these systems. Ask them anything, including the questions you'd be too shy to ask in class.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap reims">
+    <div>
+      <p class="eyebrow">Why Reims</p>
+      <h2>The tech is already here. We're just opening the door.</h2>
+      <p class="intro" style="margin-bottom:0">
+        Reims is home to Le Village by CA, an open-innovation hub backed by
+        Crédit Agricole Nord Est and sixteen local companies and institutions.
+        The businesses around the city work on precision agriculture, supply-chain
+        traceability and climate modelling. Until now, no student group on campus
+        has connected us to any of it.
+      </p>
+    </div>
+    <div class="facts">
+      <div class="fact"><b>7,000 m²</b><span>of innovation space at the Bezannes hub</span></div>
+      <div class="fact"><b>20 min</b><span>from campus by tram</span></div>
+      <div class="fact"><b>0</b><span>tech associations on campus, until now</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The year ahead</p>
+    <h2>Here's the plan.</h2>
+    <p class="intro">Rough timeline for 2026–27. It'll shift as partners come on board.</p>
+    <div class="year">
+      <div class="step"><span class="when">Oct – Nov</span><p>Meet the team, first gatherings, and reaching out to local companies.</p></div>
+      <div class="step"><span class="when">December</span><p>Our first company visit.</p></div>
+      <div class="step"><span class="when">Jan – Mar</span><p>Engineer conversations and the first hands-on projects.</p></div>
+      <div class="step"><span class="when">April</span><p>A big build challenge with a partner company.</p></div>
+      <div class="step"><span class="when">May</span><p>Showcase what we made and celebrate the year.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="faq">
+  <div class="wrap">
+    <p class="eyebrow">Questions</p>
+    <h2>Things people ask.</h2>
+    <div class="faq" style="margin-top:28px">
+      <details>
+        <summary>Do I need to know how to code?<span class="plus">+</span></summary>
+        <p>Not at all. Most people joining have never written a line of code, and that's exactly who this is for. Everything starts from the basics.</p>
+      </details>
+      <details>
+        <summary>How much time does it take?<span class="plus">+</span></summary>
+        <p>As much as you want. Come to the visits and talks that interest you. If you want to go deeper, join a project team or help run things.</p>
+      </details>
+      <details>
+        <summary>Does it cost anything?<span class="plus">+</span></summary>
+        <p>No. Everything is free to attend.</p>
+      </details>
+      <details>
+        <summary>Is it in English or French?<span class="plus">+</span></summary>
+        <p>Both. The campus is international, and so are we.</p>
+      </details>
+      <details>
+        <summary>Can students from other schools join?<span class="plus">+</span></summary>
+        <p>Yes. Engineering students from URCA and EiSINe are very welcome on project teams. Mixing backgrounds is the whole point.</p>
+      </details>
+      <details>
+        <summary>Is this an AI club?<span class="plus">+</span></summary>
+        <p>No. Blueprint is about engineering and technology broadly: hardware, infrastructure, data, the physical systems behind things. If AI comes up, great, but it's not the focus.</p>
+      </details>
+    </div>
   </div>
 </section>
 
 <section id="join">
   <div class="wrap">
-    <h2>Who it's for</h2>
-    <p class="big ink">Anyone, whatever you study.</p>
-    <p>
-      No technical background is required and nothing here assumes you can code.
-      If you can already solder, write firmware or handle GIS, there is plenty to
-      do &mdash; but the point of this is that most of us can't yet.
-    </p>
-    <p>
-      Students from EiSINe and URCA are welcome on the team. The project is led
-      from Sciences Po Reims but the work is better with engineers in the room.
-    </p>
-  </div>
-</section>
-
-<section id="vote">
-  <div class="wrap">
-    <h2>Support the project</h2>
-    <div class="vote">
-      <p class="ink" style="font-size:18px">
-        Student voting runs from <strong>Wednesday 30 September, 10:00</strong>
-        to <strong>Friday 2 October, 12:00</strong>.
-      </p>
+    <div class="cta">
+      <span class="date">Vote Wed 30 Sept, 10:00 → Fri 2 Oct, 12:00</span>
+      <h2>Want in? We'd love to have you.</h2>
       <p>
-        Student initiatives are selected by the student body. If this gets your
-        vote, it runs for the 2026&ndash;27 academic year with campus resources
-        behind it.
+        Student initiatives are chosen by students, so your vote decides whether
+        Blueprint happens this year. And if you'd like to help build it, just say hi.
       </p>
-      <p>
-        Questions, or want to be on the team?
-        <a href="mailto:aanchal.batwara@sciencespo.fr" style="color:var(--accent)">aanchal.batwara@sciencespo.fr</a>
-      </p>
+      <div class="btns">
+        <a class="btn btn-main" href="https://www.instagram.com/btc.scporeims" target="_blank" rel="noopener">Say hi on Instagram</a>
+        <a class="btn btn-alt" href="mailto:aanchal.batwara@sciencespo.fr?subject=I%27m%20interested%20in%20Blueprint">Email us</a>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p style="margin:0">
-      Blueprint Tech Collective &middot;
-      <a href="mailto:aanchal.batwara@sciencespo.fr">aanchal.batwara@sciencespo.fr</a>
-    </p>
-    <p class="disclaimer">
-      A student initiative proposed for the 2026&ndash;27 academic year. This is an
+    <div class="row">
+      <span><b style="color:var(--ink)">Blueprint Tech Collective</b> · Reims</span>
+      <span>
+        <a href="https://www.instagram.com/btc.scporeims" target="_blank" rel="noopener">Instagram</a> ·
+        <a href="mailto:aanchal.batwara@sciencespo.fr">aanchal.batwara@sciencespo.fr</a>
+      </span>
+    </div>
+    <p class="fine">
+      A student initiative proposed for the 2026–27 academic year. This is an
       independent student project and is not an official publication of, nor
       affiliated with, any institution.
     </p>
