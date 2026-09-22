@@ -65,6 +65,19 @@
   .t1{background:var(--mint);color:var(--mint-ink)}
   .t2{background:var(--blue-soft);color:var(--blue)}
   .t3{background:var(--rose);color:var(--rose-ink)}
+  .t4{background:var(--ink);color:#fff}
+
+  /* not-AI banner */
+  .noai{background:var(--ink);color:#fff;padding:64px 0;position:relative;overflow:hidden}
+  .noai::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:32px 32px}
+  .noai .wrap{position:relative;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center}
+  @media (max-width:820px){.noai .wrap{grid-template-columns:1fr;gap:28px}}
+  .strike{font-family:var(--serif);font-weight:600;font-size:clamp(90px,14vw,160px);line-height:.9;letter-spacing:-.04em;position:relative;display:inline-block;color:#fff;opacity:.92}
+  .strike::after{content:"";position:absolute;left:-6%;right:-6%;top:52%;height:12px;background:var(--sun);border-radius:6px;transform:rotate(-12deg)}
+  .noai h2{color:#fff;margin:0 0 14px}
+  .noai p{color:#c7cbd6;margin:0 0 22px;max-width:36em}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:14.5px;font-weight:500;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff}
 
   .hero-art{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:18px;box-shadow:0 18px 40px -24px rgba(28,34,51,.35);transform:rotate(1.5deg)}
   .hero-art svg{display:block;width:100%;height:auto;border-radius:16px}
@@ -172,6 +185,7 @@
         <span class="tag t1">No experience needed</span>
         <span class="tag t2">All majors welcome</span>
         <span class="tag t3">Free to join</span>
+        <span class="tag t4">Not an AI club</span>
       </div>
     </div>
 
@@ -215,6 +229,30 @@
     </div>
   </div>
 </header>
+
+<section class="noai" id="not-ai">
+  <div class="wrap">
+    <div class="strike" aria-hidden="true">AI</div>
+    <div>
+      <p class="eyebrow" style="color:var(--sun)">Let's be clear</p>
+      <h2>This is not an AI club.</h2>
+      <p>
+        No chatbots, no prompt engineering, no hype. Blueprint is about the
+        physical, tangible side of technology: the machines, networks, sensors
+        and infrastructure that actually run the world around us, and the
+        people who build them.
+      </p>
+      <div class="chips">
+        <span class="chip">Hardware</span>
+        <span class="chip">Energy & infrastructure</span>
+        <span class="chip">Sensors & mapping</span>
+        <span class="chip">Agritech</span>
+        <span class="chip">Manufacturing</span>
+        <span class="chip">Networks</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="band" id="welcome">
   <div class="wrap welcome">
@@ -343,7 +381,7 @@
       </details>
       <details>
         <summary>Is this an AI club?<span class="plus">+</span></summary>
-        <p>No. Blueprint is about engineering and technology broadly: hardware, infrastructure, data, the physical systems behind things. If AI comes up, great, but it's not the focus.</p>
+        <p>No, and on purpose. Blueprint is about hardware, infrastructure, energy and the physical systems behind things. You won't spend a single session on chatbots.</p>
       </details>
     </div>
   </div>
